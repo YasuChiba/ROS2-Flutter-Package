@@ -7,9 +7,11 @@ description: |
 output: 'lib/ros2_flutter_package_bindings_generated.dart'
 headers:
   entry-points:
-    - 'src/ros2_flutter_package.h'
+    - 'ros2_ws/src/sample-small-pkg/include/sample_small_pkg.h'
+
   include-directives:
-    - 'src/ros2_flutter_package.h'
+    - 'ros2_ws/src/**/**.h'
+
 preamble: |
   // ignore_for_file: always_specify_types
   // ignore_for_file: camel_case_types
