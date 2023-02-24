@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rcldart/rcldart.dart';
 import 'dart:async';
 
-import 'package:ros2_flutter_package/ros2_flutter_package.dart'
-    as ros2_flutter_package;
-import 'package:ros2_flutter_package/ros2_publisher.dart' as ros2_publisher;
 import 'package:ros2_flutter_package_example/wifiLock.dart';
 
 void main() {
@@ -24,14 +22,18 @@ class _MyAppState extends State<MyApp> {
   void start() async {
     print("starting");
     WifiLock().acquire();
-    ros2_publisher.startPublisher();
+    RclDart().init();
+    var node = RclDart().createNode("sampleNodeFromFlutter", "");
+    print(node);
+    //ros2_publisher.startPublisher();
     print("started");
   }
 
   @override
   void initState() {
     super.initState();
-    sumResult = ros2_flutter_package.addTwo(1, 2);
+    sumResult = 1;
+    // sumResult = ros2_flutter_package.addTwo(1, 2);
   }
 
   @override
