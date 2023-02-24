@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:ros2_flutter_package/ros2_flutter_package.dart' as ros2_flutter_package;
+import 'package:ros2_flutter_package/ros2_flutter_package.dart'
+    as ros2_flutter_package;
+import 'package:ros2_flutter_package/ros2_publisher.dart' as ros2_publisher;
+import 'package:ros2_flutter_package_example/wifiLock.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +20,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late int sumResult;
   late Future<int> sumAsyncResult;
+
+  void start() async {
+    print("starting");
+    WifiLock().acquire();
+    ros2_publisher.startPublisher();
+    print("started");
+  }
 
   @override
   void initState() {
@@ -51,6 +61,10 @@ class _MyAppState extends State<MyApp> {
                   textAlign: TextAlign.center,
                 ),
                 spacerSmall,
+                ElevatedButton(
+                  onPressed: start,
+                  child: const Text('start!!'),
+                ), // This trailing comma makes auto-formatting nicer for build methods.
               ],
             ),
           ),
