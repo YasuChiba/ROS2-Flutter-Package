@@ -25,18 +25,22 @@ target_compile_definitions(ros2_flutter_package PUBLIC DART_SHARED_LIB)
 
 if(ANDROID)
   # run colcon build
-  add_custom_target(colcon 
-    COMMAND 
+  add_custom_target(colcon
+    COMMAND
             CMAKE_COMMAND=${CMAKE_COMMAND}
             CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
             ANDROID=${ANDROID}
-            ANDROID_FUNCTION_LEVEL_LINKING=${ANDROID_FUNCTION_LEVEL_LINKING}          
+            ANDROID_FUNCTION_LEVEL_LINKING=${ANDROID_FUNCTION_LEVEL_LINKING}
             ANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
             ANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}
             ANDROID_STL=${ANDROID_STL}
             ANDROID_ABI=${ANDROID_ABI}
             ANDROID_NDK=${ANDROID_NDK}
+            ANDROID_PLATFORM=${ANDROID_PLATFORM}
             CMAKE_FIND_ROOT_PATH=${CMAKE_FIND_ROOT_PATH}
+            CMAKE_BUILD_TOOL=${CMAKE_BUILD_TOOL}
+            CMAKE_GENERATOR=${CMAKE_GENERATOR}
+            CMAKE_MAKE_PROGRAM=${CMAKE_MAKE_PROGRAM}
             ${PROJECT_SOURCE_DIR}/../ros2_ws/build_colcon_android.sh)
 
   # copy .so from colcon's workspace
